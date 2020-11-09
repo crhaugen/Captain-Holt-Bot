@@ -27,7 +27,7 @@ namespace HoltBot.Modules
             // get user info from the Context
             var user = Context.User;
 
-            string[] quotes = System.IO.File.ReadAllLines("C:\\Users\\chyha\\HoltBot\\Modules\\Quotes.txt");
+            string[] quotes = System.IO.File.ReadAllLines("/home/pi/Holt-Bot-Published/Quotes.txt");
 
             Random rand = new Random();
             int randomIndex = rand.Next(0, quotes.Length);
