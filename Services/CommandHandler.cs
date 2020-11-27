@@ -56,6 +56,8 @@ namespace HoltBot.Services
             // sets the argument position away from the prefix we set
             var argPos = 0;
 
+            //put check here?
+
             // get prefix from the configuration file
             char prefix = Char.Parse(_config["Prefix"]);
 
