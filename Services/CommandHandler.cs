@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Discord;
 using Discord.Commands;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace HoltBot.Services
 {
-    public class CommandHandler
+    public class CommandHandler: ModuleBase
     {
         // setup fields to be set later in the constructor
         private readonly IConfiguration _config;
@@ -57,7 +58,23 @@ namespace HoltBot.Services
             var argPos = 0;
 
             //put check here?
+            if (message.Content.Contains("captain holt"))
+            {
+                // initialize empty string builder for reply
+                var sb = new StringBuilder();
 
+                string[] quotes = System.IO.File.ReadAllLines("/home/pi/Holt-Bot-Published/Quotes.txt");
+
+                Random rand = new Random();
+                int randomIndex = rand.Next(0, quotes.Length);
+                
+                // build out the reply
+                sb.AppendLine(quotes[randomIndex]);
+
+                // send simple string reply
+                await ReplyAsync(sb.ToString());
+
+            }
             // get prefix from the configuration file
             char prefix = Char.Parse(_config["Prefix"]);
 
